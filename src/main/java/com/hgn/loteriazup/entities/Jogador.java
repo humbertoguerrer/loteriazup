@@ -27,7 +27,7 @@ public class Jogador {
 	}
 
 	public Jogador(Integer id, String nome, String email) {
-		Integer aposta = new Random(100).nextInt();
+		Integer aposta = new Random().nextInt(100);
 		this.id = id;
 		this.nome = nome;
 		this.email = email;

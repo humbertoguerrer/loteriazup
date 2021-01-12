@@ -44,7 +44,7 @@ public class JogadorResources {
 	public Jogador add(@RequestBody Jogador jogador ) {
 		jogador.setNome(jogador.getNome());
 		jogador.setEmail(jogador.getEmail());
-		jogador.setAposta (new Random(100).nextInt());
+		jogador.setAposta (new Random().nextInt(100));
 		return service.save(jogador);
 		}
 }
