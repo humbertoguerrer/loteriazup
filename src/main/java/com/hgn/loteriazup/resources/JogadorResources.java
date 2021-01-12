@@ -23,14 +23,14 @@ public class JogadorResources {
 
 	@RequestMapping(value = "/{email}", method = RequestMethod.GET)
 	public ResponseEntity<Jogador> find(@PathVariable String email) {
-		Jogador obj = service.findByEmail(email);
-		return ResponseEntity.ok().body(obj);
+		Jogador jogador = service.findByEmail(email);
+		return ResponseEntity.ok().body(jogador);
 
 	}
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Jogador adicionar(@RequestBody Jogador jogador) {
+	public Jogador add(@RequestBody Jogador jogador) {
 		return service.save(jogador);
 	}
 

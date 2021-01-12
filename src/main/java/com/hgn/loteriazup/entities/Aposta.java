@@ -1,4 +1,4 @@
-package com.hgn.loteriazup.entities;
+/* package com.hgn.loteriazup.entities;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -16,4 +16,4 @@ public class Aposta implements Serializable {
 		return numero;
 	}
 
-}
+} */
