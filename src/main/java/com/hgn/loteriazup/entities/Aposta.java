@@ -8,7 +8,7 @@ public class Aposta implements Serializable {
 
 	private Random numero;
 
-	public Aposta() {
+	public Aposta(Random numero) {
 		new Random().nextInt(1000);
 	}
 

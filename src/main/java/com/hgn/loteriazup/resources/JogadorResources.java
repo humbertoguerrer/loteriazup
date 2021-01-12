@@ -1,5 +1,7 @@
 package com.hgn.loteriazup.resources;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +30,23 @@ public class JogadorResources {
 
 	}
 
+	
+	 /* @PostMapping
+	  @ResponseStatus(HttpStatus.CREATED) 
+	  public Jogador add(@RequestBody Jogador jogador) { 
+	  return service.save(jogador); 
+	  } */
+
+
+
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Jogador add(@RequestBody Jogador jogador) {
+	public Jogador add(@RequestBody Jogador jogador ) {
+		jogador.setNome(jogador.getNome());
+		jogador.setEmail(jogador.getEmail());
+		jogador.setAposta (new Random(100).nextInt());
 		return service.save(jogador);
-	}
-
+		}
 }
+
+

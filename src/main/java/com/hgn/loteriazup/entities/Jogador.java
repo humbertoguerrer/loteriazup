@@ -1,6 +1,5 @@
 package com.hgn.loteriazup.entities;
 
-import java.io.Serializable;
 import java.util.Random;
 
 import javax.persistence.Column;
@@ -10,8 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Jogador implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Jogador {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,19 +20,18 @@ public class Jogador implements Serializable {
 	@Column(unique = true)
 	private String email;
 
-	@Column(unique = true)
 	private Integer aposta;
 
 	public Jogador() {
 
 	}
 
-	public Jogador(Integer id, String nome, String email, Integer aposta) {
-
+	public Jogador(Integer id, String nome, String email) {
+		Integer aposta = new Random(100).nextInt();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		this.aposta = new Random().nextInt(100);
+		this.aposta = aposta;
 	}
 
 	public Integer getId() {
@@ -63,6 +60,10 @@ public class Jogador implements Serializable {
 
 	public Integer getAposta() {
 		return aposta;
+	}
+
+	public void setAposta(Integer aposta) {
+		this.aposta = aposta;
 	}
 
 	@Override
