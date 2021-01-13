@@ -9,4 +9,5 @@ import com.hgn.loteriazup.entities.Jogador;
 public interface JogadorRepository extends JpaRepository<Jogador, String> {
 
 	Jogador findByEmail(String email);
+
 }

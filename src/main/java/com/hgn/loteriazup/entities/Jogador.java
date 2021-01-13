@@ -1,45 +1,39 @@
 package com.hgn.loteriazup.entities;
 
-import java.util.Random;
+import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Jogador {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Jogador implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private String nome;
 
+	@Id
 	@Column(unique = true)
 	private String email;
 
-	private Integer aposta;
+	private Integer qtdAposta;
+
+	@ElementCollection
+	@CollectionTable(name = "email_apostas")
+	private Set<Integer> apostas = new LinkedHashSet<>();
 
 	public Jogador() {
 
 	}
 
-	public Jogador(Integer id, String nome, String email) {
-		Integer aposta = new Random().nextInt(100);
-		this.id = id;
+	public Jogador(String nome, String email) {
 		this.nome = nome;
 		this.email = email;
-		this.aposta = aposta;
-	}
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getNome() {
@@ -58,12 +52,20 @@ public class Jogador {
 		this.email = email;
 	}
 
-	public Integer getAposta() {
-		return aposta;
+	public Integer getQtdAposta() {
+		return qtdAposta;
 	}
 
-	public void setAposta(Integer aposta) {
-		this.aposta = aposta;
+	public void setQtdAposta(Integer qtdAposta) {
+		this.qtdAposta = qtdAposta;
+	}
+
+	public Set<Integer> getApostas() {
+		return apostas;
+	}
+
+	public void setApostas(Set<Integer> apostas) {
+		this.apostas = apostas;
 	}
 
 	@Override

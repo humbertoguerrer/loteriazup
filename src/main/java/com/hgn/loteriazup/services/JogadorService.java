@@ -22,7 +22,7 @@ public class JogadorService {
 		if (jogadorExistente != null && !jogadorExistente.equals(jogador)) {
 			throw new ServicesExceptions("Já existe um cliente cadastrado com este e-mail.");
 		}
-		
+
 		return repository.save(jogador);
 
 	}

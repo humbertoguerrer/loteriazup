@@ -1,6 +1,8 @@
 package com.hgn.loteriazup.resources;
 
+import java.util.LinkedHashSet;
 import java.util.Random;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,23 +32,17 @@ public class JogadorResources {
 
 	}
 
-	
-	 /* @PostMapping
-	  @ResponseStatus(HttpStatus.CREATED) 
-	  public Jogador add(@RequestBody Jogador jogador) { 
-	  return service.save(jogador); 
-	  } */
-
-
-
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Jogador add(@RequestBody Jogador jogador ) {
+	public Jogador add(@RequestBody Jogador jogador) {
 		jogador.setNome(jogador.getNome());
 		jogador.setEmail(jogador.getEmail());
-		jogador.setAposta (new Random().nextInt(100));
-		return service.save(jogador);
+		Set<Integer> apostas = new LinkedHashSet<>();
+		for (int i = 1; i <= jogador.getQtdAposta(); i++) {
+			Integer aposta = new Random().nextInt(1000);
+			apostas.add(aposta);
 		}
+		jogador.setApostas(apostas);
+		return service.save(jogador);
+	}
 }
-
-
