@@ -5,25 +5,33 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
-import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class Jogador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	private String nome;
 
 	@Id
-	@Column(unique = true)
+	@CollectionTable(name = "email_apostas")
+	@Email
+	@NotBlank
 	private String email;
 
+	@JsonIgnore
 	private Integer qtdAposta;
 
 	@ElementCollection
-	@CollectionTable(name = "email_apostas")
 	private Set<Integer> apostas = new LinkedHashSet<>();
 
 	public Jogador() {
@@ -56,6 +64,7 @@ public class Jogador implements Serializable {
 		return qtdAposta;
 	}
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	public void setQtdAposta(Integer qtdAposta) {
 		this.qtdAposta = qtdAposta;
 	}

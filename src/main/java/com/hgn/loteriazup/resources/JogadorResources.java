@@ -4,6 +4,8 @@ import java.util.LinkedHashSet;
 import java.util.Random;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +36,7 @@ public class JogadorResources {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public Jogador add(@RequestBody Jogador jogador) {
+	public Jogador add(@Valid @RequestBody Jogador jogador) {
 		jogador.setNome(jogador.getNome());
 		jogador.setEmail(jogador.getEmail());
 		Set<Integer> apostas = new LinkedHashSet<>();

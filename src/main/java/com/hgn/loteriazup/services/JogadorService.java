@@ -19,8 +19,8 @@ public class JogadorService {
 
 	public Jogador save(Jogador jogador) {
 		Jogador jogadorExistente = repository.findByEmail(jogador.getEmail());
-		if (jogadorExistente != null && !jogadorExistente.equals(jogador)) {
-			throw new ServicesExceptions("Já existe um cliente cadastrado com este e-mail.");
+		if (jogadorExistente != null && jogadorExistente.getEmail().equals(jogador.getEmail())) {
+			throw new ServicesExceptions("Já existe um jogador cadastrado com este e-mail.");
 		}
 
 		return repository.save(jogador);
