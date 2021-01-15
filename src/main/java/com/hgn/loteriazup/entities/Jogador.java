@@ -23,7 +23,6 @@ public class Jogador implements Serializable {
 	private String nome;
 
 	@Id
-	@CollectionTable(name = "email_apostas")
 	@Email
 	@NotBlank
 	private String email;
