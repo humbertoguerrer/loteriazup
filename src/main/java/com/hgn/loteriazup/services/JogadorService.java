@@ -23,7 +23,7 @@ public class JogadorService {
 			throw new ServicesExceptions("Já existe um jogador cadastrado com este e-mail.");
 		} else {
 			Set<Integer> apostas = new LinkedHashSet<>();
-			for (int i = 0; i <= jogador.getQtdAposta(); i++) {
+			for (int i = 1; i <= jogador.getQtdAposta(); i++) {
 				Integer aposta = new Random().nextInt(1000);
 				apostas.add(aposta);
 			}
